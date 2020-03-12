@@ -20,6 +20,12 @@ public class TestService implements ITestServices{
 	public List<Entity> list() throws SQLException {
 		return dataBaseRepository.peticion();
 	}
+
+	@Override
+	public List<Entity> lista(String nombre) throws SQLException {
+		// TODO Auto-generated method stub
+		return dataBaseRepository.nuevaPeticion(nombre);
+	}
 }
 
 

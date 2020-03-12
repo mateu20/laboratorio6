@@ -48,4 +48,29 @@ public class DataBaseRepository implements IDataBaseRepository {
 		}
 	
 	}
+
+	@Override
+	public List<Entity> nuevaPeticion(String nombre) throws SQLException {
+		// TODO Auto-generated method stub
+		String nuevaPeticion = "SELECT * FROM usuario WHERE nombre = '"+nombre+"'";
+		List<Entity> entities = new ArrayList<Entity>();
+		Connection connection = null;
+		try {
+			connection = dataSource.getConnection();
+			Statement stmt = connection.createStatement();
+			ResultSet rs = stmt.executeQuery(nuevaPeticion);
+			while (rs.next()) {
+				Entity entity = new Entity();
+				entity.setNombre(rs.getString("nombre"));
+				entity.setApellido(rs.getString("apellido"));
+				entity.setEdad(rs.getInt("edad"));
+				entities.add(entity);
+			}
+			connection.close();
+			return entities;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			throw new RuntimeException(e);
+		}
+	}
 }

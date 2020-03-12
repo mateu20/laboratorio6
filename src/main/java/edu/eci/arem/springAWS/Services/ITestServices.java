@@ -10,5 +10,6 @@ import edu.eci.arem.springAWS.Models.Entity;
 public interface ITestServices {
 
     public List<Entity> list() throws SQLException;
+    public List<Entity> lista(String nombre) throws SQLException;
 	
 }
